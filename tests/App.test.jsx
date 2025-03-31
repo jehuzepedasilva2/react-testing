@@ -1,7 +1,3 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import App from '../src/App.jsx';
-
 // Steps
 // 1. in the project directory run 'npm install vitest --save-dev'
 // 2. add script to package.json 'test: vitest'
@@ -35,13 +31,18 @@ import App from '../src/App.jsx';
 // },
 
 // 10. install 'npm install @testing-library/user-event --save-dev'
+// the above provides the userEvent API that simulates user interactions with the webpage.
 
-describe('App', () => {
-  it('renders headline', () => {
-    render(<App title="React" />);
+// https://www.robinwieruch.de/vitest-react-testing-library/
+// https://www.theodinproject.com/lessons/node-path-react-new-introduction-to-react-testing
 
-    screen.debug();
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import App from "../src/App.jsx";
 
-    // check if App components renders headline
+describe("App component", () => {
+  it("renders correct heading", () => {
+    render(<App />);
+    expect(screen.getByRole("heading").textContent).toMatch(/our first test/i);
   });
 });
